@@ -6,6 +6,9 @@ require 'oauth'
 require 'uri'
 require 'json'
 
+use Rack::Auth::Basic do |username, password|
+  username == ENV['BASIC_AUTH_USERNAME'] && password == ENV['BASIC_AUTH_PASSWORD']
+end
 
 consumer = OAuth::Consumer.new(ENV["CONSUMER_KEY"], ENV["CONSUMER_SECRET"], :site => "http://www.tumblr.com")
 access = OAuth::AccessToken.new(consumer, ENV["ACCESS_TOKEN"], ENV["ACCESS_SECRET"])
@@ -46,9 +49,9 @@ get '/' do
     str += "<p>#{p['caption']}</p>"
     if(p.key?('source_title')) 
       str += "<p>(Source: <a href='#{p['source_url']}'>#{p['source_title']},</a> via <a href='#{p['post_url']}'>#{p['blog_name']}</a>)</p>"
-    end 
-    str += "<p><a target='_blank' href='/reblog?id=#{p['id']}&reblog_key=#{p['reblog_key']}'>reblog</a></p>"
-    str += "<p><a target='_blank' href='/like?id=#{p['id']}&reblog_key=#{p['reblog_key']}'>like</a></p>"
+    end
+    str += "<p><a target='_blank' href='http://#{ENV['BASIC_AUTH_USERNAME']}:#{ENV['BASIC_AUTH_PASSWORD']}@#{ENV['HOST_NAME']}/reblog?id=#{p['id']}&reblog_key=#{p['reblog_key']}'>reblog</a></p>"
+    str += "<p><a target='_blank' href='http://#{ENV['BASIC_AUTH_USERNAME']}:#{ENV['BASIC_AUTH_PASSWORD']}@#{ENV['HOST_NAME']}/like?id=#{p['id']}&reblog_key=#{p['reblog_key']}'>like</a></p>"
   }
   
   
