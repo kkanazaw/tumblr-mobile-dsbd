@@ -5,6 +5,7 @@ require 'thin'
 require 'oauth'
 require 'uri'
 require 'json'
+require 'erb'
 
 use Rack::Auth::Basic do |username, password|
   username == ENV['BASIC_AUTH_USERNAME'] && password == ENV['BASIC_AUTH_PASSWORD']
@@ -12,6 +13,7 @@ end
 
 consumer = OAuth::Consumer.new(ENV["CONSUMER_KEY"], ENV["CONSUMER_SECRET"], :site => "http://www.tumblr.com")
 access = OAuth::AccessToken.new(consumer, ENV["ACCESS_TOKEN"], ENV["ACCESS_SECRET"])
+
 
 get '/' do
 
@@ -23,42 +25,11 @@ get '/' do
     end
   }.join("&")
 
-  api = "http://api.tumblr.com/v2/user/dashboard" + (query_string.empty? ? "" : "?#{query_string}")
-
-  response = access.get(api)
-  str = "<html><head><title>dsbd</title></head><body>"
-  str += "<p>#{api}</p>"
-  dsbd = JSON.parse(response.body)
-  
-  dsbd["response"]["posts"].each{|p|
-
-    if(p['type'] == 'text') 
-      str += "<p>#{p['title']}</p>"
-      str += "<p>#{p['body']}</p>"
-    end
-
-    if(p['type'] == 'quote') 
-      str += p["text"]
-    end
-
-    if(p['type'] == 'photo')
-      img = p['photos'][0]['alt_sizes'][-3]
-      str += "<p><a href='#{p['post_url']}'><img src='#{img['url']}'  width='#{img['width']}' height='#{img['height']}'/></a></p>"
-      str += "<p>#{p['source']}</p>"
-    end
-    str += "<p>#{p['caption']}</p>"
-    if(p.key?('source_title')) 
-      str += "<p>(Source: <a href='#{p['source_url']}'>#{p['source_title']},</a> via <a href='#{p['post_url']}'>#{p['blog_name']}</a>)</p>"
-    end
-    str += "<p><a target='_blank' href='http://#{ENV['BASIC_AUTH_USERNAME']}:#{ENV['BASIC_AUTH_PASSWORD']}@#{ENV['HOST_NAME']}/reblog?id=#{p['id']}&reblog_key=#{p['reblog_key']}'>reblog</a></p>"
-    str += "<p><a target='_blank' href='http://#{ENV['BASIC_AUTH_USERNAME']}:#{ENV['BASIC_AUTH_PASSWORD']}@#{ENV['HOST_NAME']}/like?id=#{p['id']}&reblog_key=#{p['reblog_key']}'>like</a></p>"
-  }
-  
-  
-  page = (!params.key?('pages') or params["pages"] == 1) ? 1 : params["pages"]
-  str += "<a href='/?pages=#{page.to_i+1}'>next</a>"
-  str += "</body></html>"
-  str
+  @api = "http://api.tumblr.com/v2/user/dashboard" + (query_string.empty? ? "" : "?#{query_string}")
+  response = access.get(@api)
+  @dsbd = JSON.parse(response.body)
+  @page = (!params.key?('pages') or params["pages"] == 1) ? 1 : params["pages"]
+  erb :index
 end
 
 get '/reblog' do
@@ -70,3 +41,41 @@ get '/like' do
   access.post("http://api.tumblr.com/v2/user/like", "id"=>params["id"], "reblog_key"=>params["reblog_key"])
   '<html><head><title>liked</title></head><body>liked</body></html>'
 end
+
+helpers do
+  include Rack::Utils; alias_method :h, :escape_html
+end
+
+__END__
+
+@@ index
+<html>
+  <head><title>dsbd</title></head>
+  <body>
+  <p><%= h @api %></p>
+  <% @dsbd["response"]["posts"].each do |p| %>
+    <% if(p['type'] == 'text') %>
+      <p><%= p['title'] %></p>
+      <p><%= p['body'] %></p>
+    <% end %>
+
+    <% if(p['type'] == 'quote') %>
+      <%= p["text"] %>
+    <% end %>
+
+    <% if(p['type'] == 'photo') %>
+      <% img = p['photos'][0]['alt_sizes'][-3] %>
+<p><a href='<%= p['post_url'] %>'><img src='<%= img['url'] %>'  width='<%= img['width'] %>' height='<%= img['height'] %>'/></a></p>
+      <p><%= p['source'] %></p>
+    <% end %>
+    <p><%= p['caption'] %></p>
+    <% if(p.key?('source_title')) %>
+      <p>(Source: <a href='<%= p['source_url'] %>'><%= p['source_title'] %>,</a> via <a href='<%= p['post_url'] %>'><%= p['blog_name'] %></a>)</p>
+    <% end %>
+    <p><a target='_blank' href='http://<%= h ENV['BASIC_AUTH_USERNAME'] %>:<%= h ENV['BASIC_AUTH_PASSWORD'] %>@<%= h ENV['HOST_NAME'] %>/reblog?id=<%= h p['id'] %>&reblog_key=<%= h p['reblog_key'] %>'>reblog</a></p>
+    <p><a target='_blank' href='http://<%= h ENV['BASIC_AUTH_USERNAME'] %>:<%= h ENV['BASIC_AUTH_PASSWORD'] %>@<%= h ENV['HOST_NAME'] %>/like?id=<%= h p['id'] %>&reblog_key=<%= h p['reblog_key'] %>'>like</a></p>
+  <% end %>
+  <a href='/?pages=<%= h (@page.to_i+1) %>'>next</a>
+  </body>
+</html>
+
