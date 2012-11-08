@@ -91,7 +91,7 @@ __END__
                 }
 
             div#content {
-                //width: 420px;
+                width: 600px;
                 margin: auto;
                 position: relative;
             }
@@ -386,7 +386,9 @@ __END__
 
     <% if(p['type'] == 'quote') %>
       <div class="quote_text">
+      <span class="short">
         <%= p["text"] %>
+      </span>
       </div>
     <% end %>
 
