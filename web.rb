@@ -118,7 +118,18 @@ __END__
                 margin-bottom: 40px;
                 padding-right: 20px;
             }
-
+                div.post p.reblog {
+                  font-size: 25px;
+                  line-height: 27px;
+                  letter-spacing: -1px;
+                  font-weight: bold;
+                }
+                div.post p.like {
+                  font-size: 25px;
+                  line-height: 27px;
+                  letter-spacing: -1px;
+                  font-weight: bold;
+                }
                 div.post div.date {
                     position: absolute;
                     left: -260px;
@@ -278,7 +289,6 @@ __END__
                         color: #444;
                         margin-bottom: 1px;
                     }
-            
                         div.post div.conversation ul li span.label {
                             font-weight: bold;
                         }
@@ -407,8 +417,8 @@ __END__
               <p>(Source: <a href='<%= p['source_url'] %>'><%= p['source_title'] %>,</a> via <a href='<%= p['post_url'] %>'><%= p['blog_name'] %></a>)</p>
             <% end %>
         </div>
-      <p><a href='javascript:void(0);' onclick="$.get('http://<%= h ENV['BASIC_AUTH_USERNAME'] %>:<%= h ENV['BASIC_AUTH_PASSWORD'] %>@<%= h ENV['HOST_NAME'] %>/reblog?id=<%= h p['id'] %>&reblog_key=<%= h p['reblog_key'] %>');">reblog</a></p>
-      <p><a href='javascript:void(0);' onclick="$.get('http://<%= h ENV['BASIC_AUTH_USERNAME'] %>:<%= h ENV['BASIC_AUTH_PASSWORD'] %>@<%= h ENV['HOST_NAME'] %>/like?id=<%= h p['id'] %>&reblog_key=<%= h p['reblog_key'] %>');">like</a></p>
+      <p class="reblog"><a href='javascript:void(0);' onclick="$.get('http://<%= h ENV['BASIC_AUTH_USERNAME'] %>:<%= h ENV['BASIC_AUTH_PASSWORD'] %>@<%= h ENV['HOST_NAME'] %>/reblog?id=<%= h p['id'] %>&reblog_key=<%= h p['reblog_key'] %>');">reblog</a></p>
+      <p class="like"><a href='javascript:void(0);' onclick="$.get('http://<%= h ENV['BASIC_AUTH_USERNAME'] %>:<%= h ENV['BASIC_AUTH_PASSWORD'] %>@<%= h ENV['HOST_NAME'] %>/like?id=<%= h p['id'] %>&reblog_key=<%= h p['reblog_key'] %>');">like</a></p>
         </div>
       </div>
   <% end %>
