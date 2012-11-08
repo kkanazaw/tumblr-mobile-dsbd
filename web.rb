@@ -119,14 +119,14 @@ __END__
                 padding-right: 20px;
             }
                 div.post p.reblog {
-                  font-size: 25px;
-                  line-height: 27px;
+                  font-size: 36px;
+                  line-height: 40px;
                   letter-spacing: -1px;
                   font-weight: bold;
                 }
                 div.post p.like {
-                  font-size: 25px;
-                  line-height: 27px;
+                  font-size: 36px;
+                  line-height: 40px;
                   letter-spacing: -1px;
                   font-weight: bold;
                 }
@@ -331,7 +331,9 @@ __END__
                 }
             
                     div#footer a {
-                        font-size: 25px;
+                        font-size: 36px;
+                        line-height: 40px;
+                        letter-spacing: -1px;
                         text-decoration: none;
                         color: #444;
                     }
