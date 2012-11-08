@@ -90,7 +90,8 @@ __END__
         </div>
       </div>
   <% end %>
-    <div id="footer" class="autopagerize_insert_before">
+    <div class="autopagerize_insert_before"></div>
+    <div id="footer">
       <a rel="next" href='/?pages=<%= h (@page.to_i+1) %>'>Next&gt;&gt;</a>
       <p><%= h @api %></p>
     </div>
