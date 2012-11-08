@@ -65,7 +65,7 @@ __END__
             }
 
             h1 {
-                width: 600px;
+                //width: 600px;
                 padding: 0px 100px 20px 100px;
                 margin: 50px auto 40px auto;
                 border-bottom: solid 1px #ccc;
@@ -91,7 +91,7 @@ __END__
                 }
 
             div#content {
-                width: 420px;
+                //width: 420px;
                 margin: auto;
                 position: relative;
             }
@@ -164,7 +164,7 @@ __END__
                     }
                     
                 div.post img {
-                  max-width: 500px;
+                  //max-width: 500px;
                 }
 
                 div.post h2 {
@@ -334,7 +334,9 @@ __END__
                         font-size: 13px;
                         margin-top: 15px;
                     }
-.query {                padding: 0px;
+
+            .query {
+                padding: 0px;
                 margin: 25px 0px;
                 list-style-type: none;
                 border-bottom: solid 1px #ccc;
