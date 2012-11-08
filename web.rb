@@ -33,12 +33,16 @@ get '/' do
 end
 
 get '/reblog' do
-  access.post("http://api.tumblr.com/v2/blog/malmrashede.tumblr.com/post/reblog", "id"=>params["id"], "reblog_key"=>params["reblog_key"])
+  EM::defer do
+    access.post("http://api.tumblr.com/v2/blog/malmrashede.tumblr.com/post/reblog", "id"=>params["id"], "reblog_key"=>params["reblog_key"])
+  end
   '<html><head><title>rebloged</title></head><body>rebloged</body></html>'
 end
 
 get '/like' do
+  EM::defer do
   access.post("http://api.tumblr.com/v2/user/like", "id"=>params["id"], "reblog_key"=>params["reblog_key"])
+  end
   '<html><head><title>liked</title></head><body>liked</body></html>'
 end
 
