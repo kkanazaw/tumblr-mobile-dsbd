@@ -374,38 +374,43 @@ __END__
         </style>
 </head>
   <body>
-    <div style="position: fixed; top: 0px; left: 0px; height: 0px; width: 0px; z-index: 9999999; "><div style="position: fixed; top: 100%; height: 0px; "><div style="position: relative; "></div></div></div>
-  <div id="content">
-  <% @dsbd["response"]["posts"].each do |p| %>
-  <div class="post">
-    <div class="<%= h(p['type']) %>">
-    <% if(p['type'] == 'text') %>
-      <p><%= p['title'] %></p>
-      <p><%= p['body'] %></p>
-    <% end %>
-
-    <% if(p['type'] == 'quote') %>
-      <div class="quote_text">
-      <span class="short">
-        <%= p["text"] %>
-      </span>
+    <div style="position: fixed; top: 0px; left: 0px; height: 0px; width: 0px; z-index: 9999999; ">
+      <div style="position: fixed; top: 100%; height: 0px; ">
+        <div style="position: relative; "></div>
       </div>
-    <% end %>
-
-    <% if(p['type'] == 'photo') %>
-      <% img = p['photos'][0]['alt_sizes'][-3] %>
-<p><a href='<%= p['post_url'] %>'><img src='<%= img['url'] %>'  width='<%= img['width'] %>' height='<%= img['height'] %>'/></a></p>
-      <p><%= p['source'] %></p>
-    <% end %>
-    <div class="caption">
-    <p><%= p['caption'] %></p>
-    <% if(p.key?('source_title')) %>
-      <p>(Source: <a href='<%= p['source_url'] %>'><%= p['source_title'] %>,</a> via <a href='<%= p['post_url'] %>'><%= p['blog_name'] %></a>)</p>
-    <% end %>
     </div>
-    <p><a href='javascript:void(0);' onclick="$.get('http://<%= h ENV['BASIC_AUTH_USERNAME'] %>:<%= h ENV['BASIC_AUTH_PASSWORD'] %>@<%= h ENV['HOST_NAME'] %>/reblog?id=<%= h p['id'] %>&reblog_key=<%= h p['reblog_key'] %>');">reblog</a></p>
-    <p><a href='javascript:void(0);' onclick="$.get('http://<%= h ENV['BASIC_AUTH_USERNAME'] %>:<%= h ENV['BASIC_AUTH_PASSWORD'] %>@<%= h ENV['HOST_NAME'] %>/like?id=<%= h p['id'] %>&reblog_key=<%= h p['reblog_key'] %>');">like</a></p>
-  </div>
+    <div id="content">
+    <% @dsbd["response"]["posts"].each do |p| %>
+      <div class="post">
+        <div class="<%= h(p['type']) %>">
+        <% if(p['type'] == 'text') %>
+          <p><%= p['title'] %></p>
+          <p><%= p['body'] %></p>
+        <% end %>
+
+        <% if(p['type'] == 'quote') %>
+          <div class="quote_text">
+            <span class="short">
+              <%= p["text"] %>
+            </span>
+          </div>
+        <% end %>
+
+        <% if(p['type'] == 'photo') %>
+          <% img = p['photos'][0]['alt_sizes'][-3] %>
+    <p><a href='<%= p['post_url'] %>'><img src='<%= img['url'] %>'  width='<%= img['width'] %>' height='<%= img['height'] %>'/></a></p>
+      <p><%= p['source'] %></p>
+        <% end %>
+        <div class="caption">
+            <p><%= p['caption'] %></p>
+            <% if(p.key?('source_title')) %>
+              <p>(Source: <a href='<%= p['source_url'] %>'><%= p['source_title'] %>,</a> via <a href='<%= p['post_url'] %>'><%= p['blog_name'] %></a>)</p>
+            <% end %>
+        </div>
+      <p><a href='javascript:void(0);' onclick="$.get('http://<%= h ENV['BASIC_AUTH_USERNAME'] %>:<%= h ENV['BASIC_AUTH_PASSWORD'] %>@<%= h ENV['HOST_NAME'] %>/reblog?id=<%= h p['id'] %>&reblog_key=<%= h p['reblog_key'] %>');">reblog</a></p>
+      <p><a href='javascript:void(0);' onclick="$.get('http://<%= h ENV['BASIC_AUTH_USERNAME'] %>:<%= h ENV['BASIC_AUTH_PASSWORD'] %>@<%= h ENV['HOST_NAME'] %>/like?id=<%= h p['id'] %>&reblog_key=<%= h p['reblog_key'] %>');">like</a></p>
+        </div>
+      </div>
   <% end %>
     <div id="footer">
       <a rel='next' href='/?pages=<%= h (@page.to_i+1) %>'>Next&gt;&gt;</a>
