@@ -391,9 +391,7 @@ text-align: center;
 
     <% if(p['type'] == 'quote') %>
       <div class="quote_text">
-        <span class="long">
         <%= p["text"] %>
-        </span>
       </div>
     <% end %>
 
@@ -414,9 +412,9 @@ text-align: center;
   <% end %>
     <div id="footer">
       <% if(@page.to_i > 1) %>
-      <a rel='prev' href='/?pages=<%= h (@page.to_i-1) %>'>&gt;&gt; prev </a>
+      <a rel='prev' href='/?pages=<%= h (@page.to_i-1) %>'>&lt;&lt; Prev </a>
       <% end %>
-      <a rel='next' href='/?pages=<%= h (@page.to_i+1) %>'>next &lt;&lt;</a>
+      <a rel='next' href='/?pages=<%= h (@page.to_i+1) %>'>Next &gt;&gt;</a>
     </div>
   </div>
   </body>
