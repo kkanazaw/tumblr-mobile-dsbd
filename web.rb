@@ -57,7 +57,6 @@ __END__
             body {
                 margin: 0px;
                 background-color: #fff;
-                background-image: url('http://assets.tumblr.com/images/x.gif') top left fixed repeat;
                 font-family: Helvetica, Arial, sans-serif;
             }            
 
@@ -114,11 +113,6 @@ __END__
                     color: #777;
                 }
 
-div#searchresultcount {
-margin: 15px 0 30px;
-text-align: center;
-}
-            
             div.post {
                 position: relative;
                 margin-bottom: 40px;
@@ -379,7 +373,6 @@ text-align: center;
 </head>
   <body>
     <div style="position: fixed; top: 0px; left: 0px; height: 0px; width: 0px; z-index: 9999999; "><div style="position: fixed; top: 100%; height: 0px; "><div style="position: relative; "></div></div></div>
-  <p><%= h @api %></p>
   <div id="content">
   <% @dsbd["response"]["posts"].each do |p| %>
   <div class="post">
@@ -411,10 +404,8 @@ text-align: center;
   </div>
   <% end %>
     <div id="footer">
-      <% if(@page.to_i > 1) %>
-      <a rel='prev' href='/?pages=<%= h (@page.to_i-1) %>'>&lt;&lt; Prev </a>
-      <% end %>
-      <a rel='next' href='/?pages=<%= h (@page.to_i+1) %>'>Next &gt;&gt;</a>
+      <a rel='next' href='/?pages=<%= h (@page.to_i+1) %>'>Next&gt;&gt;</a>
+      <p><%= h @api %></p>
     </div>
   </div>
   </body>
