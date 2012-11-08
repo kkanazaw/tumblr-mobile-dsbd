@@ -57,7 +57,7 @@ __END__
   </head>
   <body>
     <h1><a href="http://guarded-caverns-4389.herokuapp.com/">dsbd</a></h1>
-    <div id="content">
+    <div id="content" class="autopagerize_page_element">
     <% @dsbd["response"]["posts"].each do |p| %>
       <div class="post">
         <div class="<%= h(p['type']) %>">
@@ -90,8 +90,8 @@ __END__
         </div>
       </div>
   <% end %>
-    <div id="footer">
-      <a rel='next' href='/?pages=<%= h (@page.to_i+1) %>'>Next&gt;&gt;</a>
+    <div id="footer" class="autopagerize_insert_before">
+      <a rel="next" href='/?pages=<%= h (@page.to_i+1) %>'>Next&gt;&gt;</a>
       <p><%= h @api %></p>
     </div>
   </div>
