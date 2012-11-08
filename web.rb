@@ -50,7 +50,10 @@ __END__
 
 @@ index
 <html>
-  <head><title>dsbd</title></head>
+  <head>
+  <title>dsbd</title>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+</head>
   <body>
   <p><%= h @api %></p>
   <% @dsbd["response"]["posts"].each do |p| %>
@@ -72,10 +75,13 @@ __END__
     <% if(p.key?('source_title')) %>
       <p>(Source: <a href='<%= p['source_url'] %>'><%= p['source_title'] %>,</a> via <a href='<%= p['post_url'] %>'><%= p['blog_name'] %></a>)</p>
     <% end %>
+    <p><a href='javascript:void(0);' onclick="$.get(http://<%= h ENV['BASIC_AUTH_USERNAME'] %>:<%= h ENV['BASIC_AUTH_PASSWORD'] %>@<%= h ENV['HOST_NAME'] %>/reblog?id=<%= h p['id'] %>&reblog_key=<%= h p['reblog_key'] %>)">reblog</a></p>
+    <p><a href='javascript:void(0);' onclick="http://<%= h ENV['BASIC_AUTH_USERNAME'] %>:<%= h ENV['BASIC_AUTH_PASSWORD'] %>@<%= h ENV['HOST_NAME'] %>/like?id=<%= h p['id'] %>&reblog_key=<%= h p['reblog_key'] %>">like</a></p>
+
     <p><a target='_blank' href='http://<%= h ENV['BASIC_AUTH_USERNAME'] %>:<%= h ENV['BASIC_AUTH_PASSWORD'] %>@<%= h ENV['HOST_NAME'] %>/reblog?id=<%= h p['id'] %>&reblog_key=<%= h p['reblog_key'] %>'>reblog</a></p>
     <p><a target='_blank' href='http://<%= h ENV['BASIC_AUTH_USERNAME'] %>:<%= h ENV['BASIC_AUTH_PASSWORD'] %>@<%= h ENV['HOST_NAME'] %>/like?id=<%= h p['id'] %>&reblog_key=<%= h p['reblog_key'] %>'>like</a></p>
   <% end %>
-  <a href='/?pages=<%= h (@page.to_i+1) %>'>next</a>
+  <a href='/?pages=<%= h (@page.to_i+1) %>' rel="next">next</a>
   </body>
 </html>
 
