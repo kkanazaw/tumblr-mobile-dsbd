@@ -64,7 +64,7 @@ __END__
     <div id="content">
     <div class="autopagerize_page_element">
     <% @dsbd["response"]["posts"].each do |p| %>
-      <div class="post">
+      <div class="post xfolkentry taggedlink">
         <div class="<%= h(p['type']) %>">
         <% if(p['type'] == 'text') %>
           <p><%= p['title'] %></p>
