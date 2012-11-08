@@ -65,7 +65,7 @@ __END__
             }
 
             h1 {
-                //width: 600px;
+                width: 600px;
                 padding: 0px 100px 20px 100px;
                 margin: 50px auto 40px auto;
                 border-bottom: solid 1px #ccc;
@@ -91,7 +91,7 @@ __END__
                 }
 
             div#content {
-                width: 600px;
+                width: 420px;
                 margin: auto;
                 position: relative;
             }
@@ -175,7 +175,7 @@ __END__
                     }
                     
                 div.post img {
-                  //max-width: 500px;
+                  max-width: 500px;
                 }
 
                 div.post h2 {
@@ -331,6 +331,7 @@ __END__
                 }
             
                     div#footer a {
+                        font-size: 25px;
                         text-decoration: none;
                         color: #444;
                     }
@@ -389,6 +390,7 @@ __END__
         <div style="position: relative; "></div>
       </div>
     </div>
+    <h1>dsbd</h1>
     <div id="content">
     <% @dsbd["response"]["posts"].each do |p| %>
       <div class="post">
