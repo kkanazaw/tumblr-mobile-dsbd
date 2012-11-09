@@ -63,8 +63,9 @@ __END__
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
   </head>
   <body>
+    <div class="container">
     <h1><a href="http://guarded-caverns-4389.herokuapp.com/">dsbd</a></h1>
-    <div id="content" class="container">
+    <div id="content">
     <div class="autopagerize_page_element">
     <% @dsbd["response"]["posts"].each do |p| %>
       <div class="post xfolkentry taggedlink">
@@ -104,6 +105,7 @@ __END__
       <a rel="next" href='/?pages=<%= h (@page.to_i+1) %>'>Next&gt;&gt;</a>
       <p><%= h @api %></p>
     </div>
+  </div>
   </div>
   </body>
 </html>
