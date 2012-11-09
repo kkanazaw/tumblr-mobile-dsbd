@@ -81,7 +81,7 @@ __END__
         <% end %>
 
         <% if(p['type'] == 'photo') %>
-          <% img = p['photos'][0]['alt_sizes'][2] %>
+          <% img = p['photos'][0]['alt_sizes'][1] %>
     <p><a href='<%= p['post_url'] %>'><img src='<%= img['url'] %>'  width='<%= img['width'] %>' height='<%= img['height'] %>'/></a></p>
       <p><%= p['source'] %></p>
         <% end %>
