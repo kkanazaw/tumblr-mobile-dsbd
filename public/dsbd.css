@@ -24,7 +24,7 @@ div#content {
 div#content div#description {
     position: absolute;
     right: -170px;
-    width: 160px;
+    //width: 160px;
     text-align: right;
 }
 
@@ -59,7 +59,7 @@ div.post div.date {
     position: absolute;
     left: -260px;
     text-align: right;
-    width: 230px;                
+    //width: 230px;                
     white-space: nowrap;
     font: normal 34px Helvetica, sans-serif;
     letter-spacing: -2px;
@@ -71,7 +71,7 @@ div.post div.date {
 div.post div.date div.date_brick {
     float: right;
     height: 30px;
-    width: 45px;
+    //width: 45px;
     background-color: #6498cc;
     color: #bbd5f1;
     font: Bold 12px Verdana, Sans-Serif;
@@ -84,7 +84,7 @@ div.post div.date div.date_brick {
 }
 
 div.post img.permalink {
-    width: 14px;
+    //width: 14px;
     height: 13px;
     border-width: 0px;
     background-color: #000;
@@ -100,7 +100,7 @@ div.post:hover img.permalink {
 }
 
 div.post img {
-    max-width: 700px;
+    //max-width: 700px;
 }
 
 div.post h2 {
@@ -241,7 +241,7 @@ div.post div.conversation ul li.even {
 /* Video Post */
 
 div.post div.video {
-    width: 400px;
+    //width: 400px;
     margin: auto;
 }
 
@@ -288,7 +288,7 @@ ol.notes li.note {
 ol.notes li.note img.avatar {
     vertical-align: -4px;
     margin-right: 10px;
-    width: 16px;
+    //width: 16px;
     height: 16px;
 }
 
