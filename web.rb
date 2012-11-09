@@ -53,7 +53,8 @@ end
 __END__
 
 @@ index
-<html>
+<!DOCTYPE html>
+<html lang="ja">
   <head>
     <title>dsbd</title>
     <link rel="stylesheet" type="text/css" href="./css/bootstrap.css" />
@@ -63,7 +64,7 @@ __END__
   </head>
   <body>
     <h1><a href="http://guarded-caverns-4389.herokuapp.com/">dsbd</a></h1>
-    <div id="content">
+    <div id="content" class="container">
     <div class="autopagerize_page_element">
     <% @dsbd["response"]["posts"].each do |p| %>
       <div class="post xfolkentry taggedlink">
