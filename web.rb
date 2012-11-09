@@ -56,8 +56,10 @@ __END__
 <html>
   <head>
     <title>dsbd</title>
+    <link rel="stylesheet" type="text/css" href="./css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="./css/bootstrap-responsive.css" />
+    <!-- <link rel="stylesheet" type="text/css" href="./dsbd.css" /> -->
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="./dsbd.css" />
   </head>
   <body>
     <h1><a href="http://guarded-caverns-4389.herokuapp.com/">dsbd</a></h1>
