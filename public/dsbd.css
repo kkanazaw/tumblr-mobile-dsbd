@@ -15,9 +15,9 @@ h1 a {
 }
 
 div#content {
+    width: 768px;
     margin: auto;
     position: relative;
-    width: 40%;
 }
 
 div#content div#description {
