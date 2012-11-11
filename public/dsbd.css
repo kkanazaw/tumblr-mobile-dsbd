@@ -45,7 +45,7 @@ h1 a {
 
 div#content {
     width: 768px;
-    //margin: auto;
+    margin: auto 5px 5px auto;
     position: relative;
 }
 
