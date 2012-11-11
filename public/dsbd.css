@@ -6,7 +6,7 @@ body {
 }            
 
 h1 {
-    width: 700px;
+    width: 768px;
     padding: 0px 100px 20px 100px;
     margin: 50px auto 40px auto;
     border-bottom: solid 1px #ccc;
@@ -45,7 +45,7 @@ h1 a {
 
 div#content {
     width: 768px;
-    margin: auto;
+    //margin: auto;
     position: relative;
 }
 
@@ -69,7 +69,7 @@ div#description a {
 div.post {
     position: relative;
     margin-bottom: 40px;
-    padding-right: 20px;
+    //padding-right: 20px;
 }
 div.post p.reblog {
     font-size: 36px;
@@ -128,7 +128,7 @@ div.post:hover img.permalink {
 }
 
 div.post img {
-    width: 800px;
+    width: 768px;
     height: auto;
 }
 
