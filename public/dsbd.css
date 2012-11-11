@@ -128,7 +128,7 @@ div.post:hover img.permalink {
 }
 
 div.post img {
-    max-width: 100%;
+    width: 768px;
     height: auto;
 }
 
