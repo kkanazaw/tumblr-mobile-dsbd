@@ -6,7 +6,7 @@ body {
 }            
 
 h1 {
-    width: 768px;
+    width: 800px;
     //padding: 0px 100px 20px 100px;
     //margin: 50px auto 40px auto;
     border-bottom: solid 1px #ccc;
@@ -44,7 +44,7 @@ h1 a {
 }
 
 div#content {
-    width: 768px;
+    width: 800px;
     margin: auto 0px 5px 5px;
     position: relative;
 }
@@ -128,7 +128,7 @@ div.post:hover img.permalink {
 }
 
 div.post img {
-    width: 768px;
+    width: 800px;
     height: auto;
 }
 
