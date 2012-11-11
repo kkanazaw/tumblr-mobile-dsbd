@@ -82,7 +82,7 @@ __END__
 
         <% if(p['type'] == 'photo') %>
           <% img = p['photos'][0]['alt_sizes'][2] %>
-    <p><a href='<%= p['post_url'] %>'><img src='<%= img['url'] %>'/></a></p>
+    <p><a href='javascript:void(0);' onclick="$.get('http://<%= h ENV['HOST_NAME'] %>/reblog?id=<%= h p['id'] %>&reblog_key=<%= h p['reblog_key'] %>');"><img src='<%= img['url'] %>'/></a></p>
       <p><%= p['source'] %></p>
         <% end %>
         <div class="caption">
