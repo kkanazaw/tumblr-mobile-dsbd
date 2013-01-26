@@ -73,7 +73,7 @@ __END__
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
   </head>
   <body>
-    <h1><a href="http://guarded-caverns-4389.herokuapp.com/">dsbd <% session[:reblog] %></a></h1>
+    <h1><a href="http://guarded-caverns-4389.herokuapp.com/">dsbd <% request.env['rack.sesson'] %></a></h1>
     <div id="content">
     <div class="autopagerize_page_element">
     <% @dsbd["response"]["posts"].each do |p| %>
