@@ -41,8 +41,8 @@ end
 get '/reblog' do
   EM::defer do
     access.post("http://api.tumblr.com/v2/blog/malmrashede.tumblr.com/post/reblog", "id"=>params["id"], "reblog_key"=>params["reblog_key"])
-    session["reblog"] = session["reblog"] + 1
   end
+  session["reblog"] = session["reblog"] + 1
   '<html><head><title>rebloged</title></head><body>rebloged</body></html>'
 end
 
