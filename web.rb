@@ -7,16 +7,11 @@ require 'uri'
 require 'json'
 require 'erb'
 
+enable :sessions
+
 use Rack::Auth::Basic do |username, password|
   username == ENV['BASIC_AUTH_USERNAME'] && password == ENV['BASIC_AUTH_PASSWORD']
 end
-
-use Rack::Session::Cookie,
-# :key => 'rack.session',
-#                          :domain => 'guarded-caverns-4389.herokuapp.com',
-#                           :path => '/',
-                           :expire_after => 60*60*24*14, # 2 weeks
-                           :secret => 'kazusuke_ha_umaiyo'
 
 consumer = OAuth::Consumer.new(ENV["CONSUMER_KEY"], ENV["CONSUMER_SECRET"], :site => "http://www.tumblr.com")
 access = OAuth::AccessToken.new(consumer, ENV["ACCESS_TOKEN"], ENV["ACCESS_SECRET"])
@@ -24,12 +19,12 @@ access = OAuth::AccessToken.new(consumer, ENV["ACCESS_TOKEN"], ENV["ACCESS_SECRE
 
 get '/' do
   if !params.key?('pages')
-      session[:reblog] = 0
+      session['reblog'] = 0
   end
 
   query_string = (params||{}).map{|k,v|
     if k == 'pages'
-      offset = (v.to_i-1)*20 + session[:reblog].to_i
+      offset = (v.to_i-1)*20 + session['reblog'].to_i
       URI.encode('offset') + "=" + URI.encode(offset.to_s)
     else
       URI.encode(k.to_s) + "=" + URI.encode(v.to_s)
@@ -46,7 +41,7 @@ end
 get '/reblog' do
   EM::defer do
     access.post("http://api.tumblr.com/v2/blog/malmrashede.tumblr.com/post/reblog", "id"=>params["id"], "reblog_key"=>params["reblog_key"])
-    session[:reblog] += 1
+    session["reblog"] += 1
   end
   '<html><head><title>rebloged</title></head><body>rebloged</body></html>'
 end
@@ -73,7 +68,7 @@ __END__
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
   </head>
   <body>
-    <h1><a href="http://guarded-caverns-4389.herokuapp.com/">dsbd <% request.env['rack.sesson'] %></a></h1>
+    <h1><a href="http://guarded-caverns-4389.herokuapp.com/">dsbd</a></h1>
     <div id="content">
     <div class="autopagerize_page_element">
     <% @dsbd["response"]["posts"].each do |p| %>
