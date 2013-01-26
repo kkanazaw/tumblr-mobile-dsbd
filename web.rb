@@ -22,10 +22,14 @@ access = OAuth::AccessToken.new(consumer, ENV["ACCESS_TOKEN"], ENV["ACCESS_SECRE
 
 
 get '/' do
+  if params.key?('pages')
+      session[:reblog] = 0
+  end
 
   query_string = (params||{}).map{|k,v|
     if k == 'pages'
-      URI.encode('offset') + "=" + URI.encode(((v.to_i-1)*20).to_s)
+      offset = (v.to_i-1)*20 + session[:reblog].to_i
+      URI.encode('offset') + "=" + URI.encode(offset.to_s)
     else
       URI.encode(k.to_s) + "=" + URI.encode(v.to_s)
     end
@@ -41,6 +45,7 @@ end
 get '/reblog' do
   EM::defer do
     access.post("http://api.tumblr.com/v2/blog/malmrashede.tumblr.com/post/reblog", "id"=>params["id"], "reblog_key"=>params["reblog_key"])
+    session[:reblog] += 1
   end
   '<html><head><title>rebloged</title></head><body>rebloged</body></html>'
 end
