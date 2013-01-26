@@ -18,9 +18,9 @@ access = OAuth::AccessToken.new(consumer, ENV["ACCESS_TOKEN"], ENV["ACCESS_SECRE
 
 
 get '/' do
-  if !params.key?('pages')
-      session['reblog'] = 0
-  end
+#  if !params.key?('pages')
+#      session['reblog'] = 0
+#  end
 
   query_string = (params||{}).map{|k,v|
     if k == 'pages'
@@ -41,7 +41,7 @@ end
 get '/reblog' do
   EM::defer do
     access.post("http://api.tumblr.com/v2/blog/malmrashede.tumblr.com/post/reblog", "id"=>params["id"], "reblog_key"=>params["reblog_key"])
-    session["reblog"] += 1
+    session["reblog"] = session["reblog"] + 1
   end
   '<html><head><title>rebloged</title></head><body>rebloged</body></html>'
 end
