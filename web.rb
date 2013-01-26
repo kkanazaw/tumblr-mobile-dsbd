@@ -12,7 +12,7 @@ use Rack::Auth::Basic do |username, password|
 end
 
 use Rack::Session::Cookie, :key => 'rack.session',
-                           :domain => 'guarded-caverns-4389',
+                           :domain => 'guarded-caverns-4389.herokuapp.com',
                            :path => '/',
                            :expire_after => 60*60*24*14, # 2 weeks
                            :secret => 'kazusuke_ha_umaiyo'
