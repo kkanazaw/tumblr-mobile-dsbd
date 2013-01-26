@@ -11,6 +11,12 @@ use Rack::Auth::Basic do |username, password|
   username == ENV['BASIC_AUTH_USERNAME'] && password == ENV['BASIC_AUTH_PASSWORD']
 end
 
+use Rack::Session::Cookie, :key => 'rack.session',
+                           :domain => 'guarded-caverns-4389',
+                           :path => '/',
+                           :expire_after => 60*60*24*14, # 2 weeks
+                           :secret => 'kazusuke_ha_umaiyo'
+
 consumer = OAuth::Consumer.new(ENV["CONSUMER_KEY"], ENV["CONSUMER_SECRET"], :site => "http://www.tumblr.com")
 access = OAuth::AccessToken.new(consumer, ENV["ACCESS_TOKEN"], ENV["ACCESS_SECRET"])
 
