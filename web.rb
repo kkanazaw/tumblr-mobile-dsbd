@@ -22,7 +22,7 @@ access = OAuth::AccessToken.new(consumer, ENV["ACCESS_TOKEN"], ENV["ACCESS_SECRE
 
 
 get '/' do
-  if params.key?('pages')
+  if !params.key?('pages')
       session[:reblog] = 0
   end
 
@@ -72,7 +72,7 @@ __END__
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
   </head>
   <body>
-    <h1><a href="http://guarded-caverns-4389.herokuapp.com/">dsbd</a></h1>
+    <h1><a href="http://guarded-caverns-4389.herokuapp.com/">dsbd <% session[:reblog] %></a></h1>
     <div id="content">
     <div class="autopagerize_page_element">
     <% @dsbd["response"]["posts"].each do |p| %>
