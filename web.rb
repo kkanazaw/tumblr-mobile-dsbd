@@ -68,21 +68,21 @@ __END__
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
   </head>
   <body>
-    <h1><a href="http://guarded-caverns-4389.herokuapp.com/">dsbd <%= session["reblog"] %></a></h1>
+    <h1><a href="http://guarded-caverns-4389.herokuapp.com/">dsbd <%= h session["reblog"] %></a></h1>
     <div id="content">
     <div class="autopagerize_page_element">
     <% @dsbd["response"]["posts"].each do |p| %>
       <div class="post xfolkentry taggedlink">
         <div class="<%= h(p['type']) %>">
         <% if(p['type'] == 'text') %>
-          <p><%= p['title'] %></p>
-          <p><%= p['body'] %></p>
+          <p><%= h p['title'] %></p>
+          <p><%= h p['body'] %></p>
         <% end %>
 
         <% if(p['type'] == 'quote') %>
           <div class="quote_text">
             <span class="short">
-              <%= p["text"] %>
+              <%= h(p["text"]) %>
             </span>
           </div>
         <% end %>
@@ -95,7 +95,7 @@ __END__
         <div class="caption">
             <p><%= p['caption'] %></p>
             <% if(p.key?('source_title')) %>
-              <p>(Source: <a href='<%= p['source_url'] %>'><%= p['source_title'] %>,</a> via <a href='<%= p['post_url'] %>'><%= p['blog_name'] %></a>)</p>
+              <p>(Source: <a href='<%= p['source_url'] %>'><%= h p['source_title'] %>,</a> via <a href='<%= p['post_url'] %>'><%= h p['blog_name'] %></a>)</p>
             <% end %>
         </div>
       <p class="reblog"><a href='javascript:void(0);' onclick="$.get('http://<%= h ENV['HOST_NAME'] %>/reblog?id=<%= h p['id'] %>&reblog_key=<%= h p['reblog_key'] %>');">Reblog</a></p>
