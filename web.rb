@@ -82,7 +82,7 @@ __END__
         <% if(p['type'] == 'quote') %>
           <div class="quote_text">
             <span class="short">
-              <%= h(p["text"]) %>
+              <%= p["text"] %>
             </span>
           </div>
         <% end %>
