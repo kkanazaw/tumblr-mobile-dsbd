@@ -69,6 +69,7 @@ __END__
     <script src="http://code.jquery.com/mobile/latest/jquery.mobile.min.js"></script>
   </head>
   <body>
+    <div id="page01" data-role="page">
     <div data-role="header">
         <h1><a href="http://guarded-caverns-4389.herokuapp.com/">dsbd <%= h session["reblog"] %></a></h1>
     </div>
@@ -110,10 +111,11 @@ __END__
     <div class="autopagerize_insert_before"></div>
     <div id="footer" data-role="footer">
       <a data-role="button" data-icon= "home" href="http://guarded-caverns-4389.herokuapp.com/">dsbd <%= h session["reblog"] %></a>
-      <a rel="prev" data-role="button" data-icon="prev" href='/?pages=<%= h (@page.to_i-1) %>'>&lt;&lt;Prev </a>
-      <a rel="next" data-role="button" data-icon="next" href='/?pages=<%= h (@page.to_i+1) %>'> Next&gt;&gt;</a>
+      <a rel="prev" data-role="button" href='/?pages=<%= h (@page.to_i-1) %>'>&lt;&lt;Prev</a>
+      <a rel="next" data-role="button" href='/?pages=<%= h (@page.to_i+1) %>'>Next&gt;&gt;</a>
       <p><%= h @api %></p>
     </div>
+  </div>
   </div>
   </body>
 </html>
