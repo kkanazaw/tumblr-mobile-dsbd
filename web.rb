@@ -37,7 +37,7 @@ get '/' do
   response = access.get(@api)
   @dsbd = JSON.parse(response.body)
   delta = @dsbd["response"]["posts"][0]["id"] - @dsbd["response"]["posts"][-1]["id"]
-  session['since_id'] = @dsbd["response"]["posts"][-1]["id"] - delta * 20;
+  session['since_id'] = @dsbd["response"]["posts"][-1]["id"] - delta;
   @page = (!params.key?('pages') or params["pages"] == 1) ? 1 : params["pages"]
   erb :index
 end
