@@ -83,7 +83,7 @@ __END__
     <div data-role="header">
         <h1><a href="http://guarded-caverns-4389.herokuapp.com/">dsbd <%= h session["reblog"] %></a></h1>
     </div>
-    <div id="content" data-role="content">
+    <div class="content" data-role="content">
     <div class="autopagerize_page_element">
     <% @dsbd["response"]["posts"].each do |p| %>
       <div class="post xfolkentry taggedlink">
