@@ -69,8 +69,10 @@ __END__
     <script src="http://code.jquery.com/mobile/latest/jquery.mobile.min.js"></script>
   </head>
   <body>
-    <h1><a href="http://guarded-caverns-4389.herokuapp.com/">dsbd <%= h session["reblog"] %></a></h1>
-    <div id="content">
+    <div data-role="header">
+        <h1><a href="http://guarded-caverns-4389.herokuapp.com/">dsbd <%= h session["reblog"] %></a></h1>
+    </div>
+    <div id="content" data-role="content">
     <div class="autopagerize_page_element">
     <% @dsbd["response"]["posts"].each do |p| %>
       <div class="post xfolkentry taggedlink">
@@ -106,10 +108,10 @@ __END__
   <% end %>
     </div>
     <div class="autopagerize_insert_before"></div>
-    <div id="footer">
-      <a href="http://guarded-caverns-4389.herokuapp.com/">dsbd <%= h session["reblog"] %></a>
-      <a rel="prev" href='/?pages=<%= h (@page.to_i-1) %>'>&lt;&lt;Prev </a>
-      <a rel="next" href='/?pages=<%= h (@page.to_i+1) %>'> Next&gt;&gt;</a>
+    <div id="footer" data-role="footer">
+      <a data-role="button" data-icon= "home" href="http://guarded-caverns-4389.herokuapp.com/">dsbd <%= h session["reblog"] %></a>
+      <a rel="prev" data-role="button" data-icon="prev" href='/?pages=<%= h (@page.to_i-1) %>'>&lt;&lt;Prev </a>
+      <a rel="next" data-role="button" data-icon="next" href='/?pages=<%= h (@page.to_i+1) %>'> Next&gt;&gt;</a>
       <p><%= h @api %></p>
     </div>
   </div>
