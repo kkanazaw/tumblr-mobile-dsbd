@@ -64,8 +64,9 @@ __END__
 <html lang="ja">
   <head>
     <title>dsbd</title>
-    <link rel="stylesheet" type="text/css" href="./dsbd.css" />
+    <link rel="stylesheet" type="text/css" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+    <script src="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css"></script>
   </head>
   <body>
     <h1><a href="http://guarded-caverns-4389.herokuapp.com/">dsbd <%= h session["reblog"] %></a></h1>
@@ -99,7 +100,7 @@ __END__
             <% end %>
         </div>
       <p class="reblog"><a href='javascript:void(0);' onclick="$.get('http://<%= h ENV['HOST_NAME'] %>/reblog?id=<%= h p['id'] %>&reblog_key=<%= h p['reblog_key'] %>');">Reblog</a></p>
-      <p class="like" style="font-size:x-large"><a ref='javascript:void(0);' onclick="$.get('http://<%= h ENV['HOST_NAME'] %>/like?id=<%= h p['id'] %>&reblog_key=<%= h p['reblog_key'] %>');">&hearts;</a></p>
+      <p class="like"><a href='javascript:void(0);' onclick="$.get('http://<%= h ENV['HOST_NAME'] %>/like?id=<%= h p['id'] %>&reblog_key=<%= h p['reblog_key'] %>');">&hearts;</a></p>
         </div>
       </div>
   <% end %>
