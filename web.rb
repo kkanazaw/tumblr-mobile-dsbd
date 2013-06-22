@@ -99,13 +99,15 @@ __END__
             <% end %>
         </div>
       <p class="reblog"><a href='javascript:void(0);' onclick="$.get('http://<%= h ENV['HOST_NAME'] %>/reblog?id=<%= h p['id'] %>&reblog_key=<%= h p['reblog_key'] %>');">Reblog</a></p>
-      <p class="like"><a href='javascript:void(0);' onclick="$.get('http://<%= h ENV['HOST_NAME'] %>/like?id=<%= h p['id'] %>&reblog_key=<%= h p['reblog_key'] %>');">&hearts;</a></p>
+      <p class="like"><a style="font-size:x-large;" href='javascript:void(0);' onclick="$.get('http://<%= h ENV['HOST_NAME'] %>/like?id=<%= h p['id'] %>&reblog_key=<%= h p['reblog_key'] %>');">&hearts;</a></p>
         </div>
       </div>
   <% end %>
     </div>
     <div class="autopagerize_insert_before"></div>
     <div id="footer">
+      <a href="http://guarded-caverns-4389.herokuapp.com/">dsbd <%= h session["reblog"] %></a>
+      <a rel="prev" href='/?pages=<%= h (@page.to_i-1) %>'>Prev&lt;&lt;</a>
       <a rel="next" href='/?pages=<%= h (@page.to_i+1) %>'>Next&gt;&gt;</a>
       <p><%= h @api %></p>
     </div>
