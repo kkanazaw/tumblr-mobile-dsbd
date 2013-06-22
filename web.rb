@@ -64,9 +64,9 @@ __END__
 <html lang="ja">
   <head>
     <title>dsbd</title>
-    <link rel="stylesheet" type="text/css" href="http://ajax.aspnetcdn.com/ajax/jquery.mobile/1.3.1/jquery.mobile-1.3.1.css" />
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
-    <script src="http://ajax.aspnetcdn.com/ajax/jquery.mobile/1.3.1/jquery.mobile-1.3.1.js"></script>
+    <link href="http://code.jquery.com/mobile/latest/jquery.mobile.min.css" rel="stylesheet" type="text/css" />
+    <script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+    <script src="http://code.jquery.com/mobile/latest/jquery.mobile.min.js"></script>
   </head>
   <body>
     <h1><a href="http://guarded-caverns-4389.herokuapp.com/">dsbd <%= h session["reblog"] %></a></h1>
