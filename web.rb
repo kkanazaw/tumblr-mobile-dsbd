@@ -71,18 +71,7 @@ __END__
     <script src="http://code.jquery.com/mobile/latest/jquery.mobile.min.js"></script>
     <script src="jquery.autopager-1.0.0.min.js"></script>
 <script type="text/javascript">
-    $(function() {
-if (/; CPU.*OS (?:3_2|4_0)/i.test(navigator.userAgent)) {
-    (function($) {
-                $.fn.offsetOld = $.fn.offset;
-                $.fn.offset = function() {
-                  var result = this.offsetOld();
-                  result.top -= window.scrollY;
-                  result.left -= window.scrollX;
-                  return result;
-                };
-              })(jQuery);
-   }
+ var height = window.innerHeight ? window.innerHeight : $(window).height();
         $.autopager();
     });
 </script>
