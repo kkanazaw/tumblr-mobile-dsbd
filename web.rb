@@ -27,7 +27,7 @@ get '/' do
     if k == 'pages'
 #      offset = (v.to_i-1)*20
 #      URI.encode('offset') + "=" + URI.encode(offset.to_s)
-      URI.encode('since_id') + "=" + URI.encode((session['since_id'] - 20).to_s)
+      URI.encode('since_id') + "=" + URI.encode(session['since_id'].to_s)
     else
       URI.encode(k.to_s) + "=" + URI.encode(v.to_s)
     end
@@ -36,7 +36,8 @@ get '/' do
   @api = "http://api.tumblr.com/v2/user/dashboard" + (query_string.empty? ? "" : "?#{query_string}")
   response = access.get(@api)
   @dsbd = JSON.parse(response.body)
-  session['since_id'] = @dsbd["response"]["posts"][-1]["id"];
+  delta = @dsbd["response"]["posts"][0]["id"] - @dsbd["response"]["posts"][-1]["id"]
+  session['since_id'] = @dsbd["response"]["posts"][-1]["id"] - delta * 20;
   @page = (!params.key?('pages') or params["pages"] == 1) ? 1 : params["pages"]
   erb :index
 end
