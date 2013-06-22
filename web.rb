@@ -106,8 +106,8 @@ __END__
               <p>(Source: <a href='<%= p['source_url'] %>'><%= h p['source_title'] %>,</a> via <a href='<%= p['post_url'] %>'><%= h p['blog_name'] %></a>)</p>
             <% end %>
         </div>
-      <p class="reblog"><a href='javascript:void(0);' onclick="$.get('http://<%= h ENV['HOST_NAME'] %>/reblog?id=<%= h p['id'] %>&reblog_key=<%= h p['reblog_key'] %>');">Reblog</a></p>
-      <p class="like"><a href='javascript:void(0);' onclick="$.get('http://<%= h ENV['HOST_NAME'] %>/like?id=<%= h p['id'] %>&reblog_key=<%= h p['reblog_key'] %>');">&hearts;</a></p>
+      <p class="reblog"><a data-role="button" href='javascript:void(0);' onclick="$.get('http://<%= h ENV['HOST_NAME'] %>/reblog?id=<%= h p['id'] %>&reblog_key=<%= h p['reblog_key'] %>');">Reblog</a></p>
+      <p class="like"><a data-role="button" href='javascript:void(0);' onclick="$.get('http://<%= h ENV['HOST_NAME'] %>/like?id=<%= h p['id'] %>&reblog_key=<%= h p['reblog_key'] %>');">&hearts;</a></p>
         </div>
       </div>
   <% end %>
@@ -117,7 +117,6 @@ __END__
       <a data-role="button" data-icon= "home" href="http://guarded-caverns-4389.herokuapp.com/">dsbd <%= h session["reblog"] %></a>
       <a rel="prev" data-role="button" href='/?pages=<%= h (@page.to_i-1) %>'>&lt;&lt;Prev</a>
       <a rel="next" data-role="button" href='/?pages=<%= h (@page.to_i+1) %>'>Next&gt;&gt;</a>
-      <p><%= h @api %></p>
     </div>
   </div>
   </div>
