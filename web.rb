@@ -64,11 +64,14 @@ __END__
 <html lang="ja">
   <head>
     <title>dsbd</title>
+    <mata name="viewport" content="width=device-width,initial-scale=1">
     <link href="http://code.jquery.com/mobile/latest/jquery.mobile.min.css" rel="stylesheet" type="text/css" />
     <script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
     <script src="http://code.jquery.com/mobile/latest/jquery.mobile.min.js"></script>
   </head>
   <body>
+
+
     <div id="page01" data-role="page">
     <div data-role="header">
         <h1><a href="http://guarded-caverns-4389.herokuapp.com/">dsbd <%= h session["reblog"] %></a></h1>
