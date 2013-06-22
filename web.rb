@@ -25,8 +25,8 @@ get '/' do
 
   query_string = (params||{}).map{|k,v|
     if k == 'pages'
-      offset = (v.to_i-1)*20
-      URI.encode('offset') + "=" + URI.encode(offset.to_s)
+#      offset = (v.to_i-1)*20
+#      URI.encode('offset') + "=" + URI.encode(offset.to_s)
       URI.encode('since_id') + "=" + URI.encode(session['since_id'].to_s)
     else
       URI.encode(k.to_s) + "=" + URI.encode(v.to_s)
