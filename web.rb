@@ -20,12 +20,14 @@ access = OAuth::AccessToken.new(consumer, ENV["ACCESS_TOKEN"], ENV["ACCESS_SECRE
 get '/' do
   if !params.key?('pages')
       session['reblog'] = 0
+      session['since_id'] = 0
   end
 
   query_string = (params||{}).map{|k,v|
     if k == 'pages'
       offset = (v.to_i-1)*20
       URI.encode('offset') + "=" + URI.encode(offset.to_s)
+      URI.encode('since_id') + "=" + URI.encode(session['since_id'])
     else
       URI.encode(k.to_s) + "=" + URI.encode(v.to_s)
     end
@@ -34,6 +36,7 @@ get '/' do
   @api = "http://api.tumblr.com/v2/user/dashboard" + (query_string.empty? ? "" : "?#{query_string}")
   response = access.get(@api)
   @dsbd = JSON.parse(response.body)
+  session['since_id'] = @dsbd["response"]["posts"][-1]["id"];
   @page = (!params.key?('pages') or params["pages"] == 1) ? 1 : params["pages"]
   erb :index
 end
