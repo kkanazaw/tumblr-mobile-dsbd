@@ -79,7 +79,7 @@ __END__
 
     <div id="page01" data-role="page">
     <div data-role="header">
-        <h1><a href="http://guarded-caverns-4389.herokuapp.com/">dsbd <%= h session["reblog"] %></a></h1>
+        <h1><a href="http://guarded-caverns-4389.herokuapp.com/">dsbd <%= h session["reblog"] %> <%= h session["since_id"] %></a></h1>
     </div>
     <div class="content" data-role="content">
     <div class="autopagerize_page_element">
