@@ -64,7 +64,7 @@ __END__
 <html lang="ja">
   <head>
     <title>dsbd</title>
-    <mata name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
     <link href="http://code.jquery.com/mobile/latest/jquery.mobile.min.css" rel="stylesheet" type="text/css" />
     <script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
     <script src="http://code.jquery.com/mobile/latest/jquery.mobile.min.js"></script>
