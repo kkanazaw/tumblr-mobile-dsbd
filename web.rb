@@ -69,11 +69,6 @@ __END__
     <link href="dsbd.css" rel="stylesheet" type="text/css" />
     <script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
     <script src="http://code.jquery.com/mobile/latest/jquery.mobile.min.js"></script>
-    <script src="jquery.autopager-1.0.0.js"></script>
-<script type="text/javascript">
-        $.autopager();
-    });
-</script>
   </head>
   <body>
 
