@@ -3,4 +3,4 @@ rvm:
   - 1.9.3-p484
 gemfile:
   - Gemfile
-script: bundle exec ruby -cw *.rb
+script: bundle exec rake syntax_check
