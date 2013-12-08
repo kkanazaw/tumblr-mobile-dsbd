@@ -1,6 +1,8 @@
 # tumblr-mobile-dsbd
 ==================
 
+[![Build Status](https://travis-ci.org/malmrashede/tumblr-mobile-dsbd.png?branch=master)](https://travis-ci.org/malmrashede/tumblr-mobile-dsbd)
+
 スマートフォンからタップでreblogするためのツールです。
 個人的にherokuに設置して使っています。
 
