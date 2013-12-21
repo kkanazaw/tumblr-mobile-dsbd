@@ -6,6 +6,7 @@ require 'oauth'
 require 'uri'
 require 'json'
 require 'erb'
+require 'sanitize'
 
 enable :sessions
 
@@ -60,8 +61,7 @@ end
 helpers do
   include Rack::Utils; alias_method :h, :escape_html
   def sanitize(html)
-    require Sanitize;
-    return Sanitize.clean(html, Sanitize::Config::BASIC)
+    Sanitize.clean(html, Sanitize::Config::BASIC)
   end
 end
 
