@@ -59,6 +59,10 @@ end
 
 helpers do
   include Rack::Utils; alias_method :h, :escape_html
+  def sanitize(html)
+    require Sanitize;
+    return Sanitize.clean(html, Sanitize::Config::BASIC)
+  end
 end
 
 __END__
@@ -87,14 +91,14 @@ __END__
       <div class="post xfolkentry taggedlink">
         <div class="<%= h(p['type']) %>">
         <% if(p['type'] == 'text') %>
-          <p><%= h p['title'] %></p>
-          <p><%= h p['body'] %></p>
+          <p><%= sanitize p['title'] %></p>
+          <p><%= sanitize p['body'] %></p>
         <% end %>
 
         <% if(p['type'] == 'quote') %>
           <div class="quote_text">
             <span class="short">
-              <%= h p["text"] %>
+              <%= sanitize p["text"] %>
             </span>
           </div>
         <% end %>
@@ -102,12 +106,12 @@ __END__
         <% if(p['type'] == 'photo') %>
           <% img = p['photos'][0]['alt_sizes'][2] %>
     <p><a href='javascript:void(0);' onclick="$.get('http://<%= h ENV['HOST_NAME'] %>/reblog?id=<%= h p['id'] %>&reblog_key=<%= h p['reblog_key'] %>');"><img src='<%= img['url'] %>'/></a></p>
-      <p><%= h p['source'] %></p>
+      <p><%= sanitize p['source'] %></p>
         <% end %>
         <div class="caption">
-            <p><%= h p['caption'] %></p>
+            <p><%= sanitize p['caption'] %></p>
             <% if(p.key?('source_title')) %>
-              <p>(Source: <a href='<%= p['source_url'] %>'><%= h p['source_title'] %>,</a> via <a href='<%= p['post_url'] %>'><%= h p['blog_name'] %></a>)</p>
+              <p>(Source: <a href='<%= p['source_url'] %>'><%= sanitize p['source_title'] %>,</a> via <a href='<%= p['post_url'] %>'><%= sanitize p['blog_name'] %></a>)</p>
             <% end %>
         </div>
       <p class="reblog"><a data-role="button" href='javascript:void(0);' onclick="$.get('http://<%= h ENV['HOST_NAME'] %>/reblog?id=<%= h p['id'] %>&reblog_key=<%= h p['reblog_key'] %>');">Reblog</a></p>
