@@ -9,9 +9,9 @@ require 'erb'
 
 enable :sessions
 
-use Rack::Auth::Basic do |username, password|
-  username == ENV['BASIC_AUTH_USERNAME'] && password == ENV['BASIC_AUTH_PASSWORD']
-end
+# use Rack::Auth::Basic do |username, password|
+#   username == ENV['BASIC_AUTH_USERNAME'] && password == ENV['BASIC_AUTH_PASSWORD']
+# end
 
 consumer = OAuth::Consumer.new(ENV["CONSUMER_KEY"], ENV["CONSUMER_SECRET"], :site => "http://www.tumblr.com")
 access = OAuth::AccessToken.new(consumer, ENV["ACCESS_TOKEN"], ENV["ACCESS_SECRET"])
@@ -94,7 +94,7 @@ __END__
         <% if(p['type'] == 'quote') %>
           <div class="quote_text">
             <span class="short">
-              <%= p["text"] %>
+              <%= h p["text"] %>
             </span>
           </div>
         <% end %>
@@ -102,10 +102,10 @@ __END__
         <% if(p['type'] == 'photo') %>
           <% img = p['photos'][0]['alt_sizes'][2] %>
     <p><a href='javascript:void(0);' onclick="$.get('http://<%= h ENV['HOST_NAME'] %>/reblog?id=<%= h p['id'] %>&reblog_key=<%= h p['reblog_key'] %>');"><img src='<%= img['url'] %>'/></a></p>
-      <p><%= p['source'] %></p>
+      <p><%= h p['source'] %></p>
         <% end %>
         <div class="caption">
-            <p><%= p['caption'] %></p>
+            <p><%= h p['caption'] %></p>
             <% if(p.key?('source_title')) %>
               <p>(Source: <a href='<%= p['source_url'] %>'><%= h p['source_title'] %>,</a> via <a href='<%= p['post_url'] %>'><%= h p['blog_name'] %></a>)</p>
             <% end %>
