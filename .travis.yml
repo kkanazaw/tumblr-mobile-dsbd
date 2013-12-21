@@ -1,6 +1,13 @@
 language: ruby
 rvm:
-  - 1.9.3-p484
+- 1.9.3-p484
 gemfile:
-  - Gemfile
+- Gemfile
 script: bundle exec rake syntax_check
+deploy:
+  provider: heroku
+  api_key:
+    secure: WeDUZ5ZNQU97zKW4JewrCQ/XlZqR+lGtyQtl4BwC96EgbrsO8suNS1Gj24nplWSi6IPCftkjOH7wTwHpE9tnK7PJx92b76YmkDf52uyplDvX0Dig/z94CgrkzYVBA7xhVBMAaxRgFHFiWSmTLVmY+CGHaf8uIO5KJP5MS3dp7LM=
+  app: guarded-caverns-4389
+  on:
+    repo: malmrashede/tumblr-mobile-dsbd
